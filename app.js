@@ -50,5 +50,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+const port = 5010; // Change this to your desired port number
+app.listen(port, function() {
+  console.log(`Server started on http://localhost:${port}`);
+});
+
 
 module.exports = app;
