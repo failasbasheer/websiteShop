@@ -1,0 +1,23 @@
+ <div class="container1 mt-5">
+        <div class="text-center">
+            <h1 class="display-4">Order Successful!</h1>
+            <p class="lead">Thank you for your purchase. Your order has been confirmed.</p>
+            <div class="animation-container1">
+                <!-- Animation elements will go here -->
+            </div>
+        </div>
+        <div class="mt-5 d-flex justify-content-center gap-3">
+                <a href="/orders" class="btn btn-primary btn-lg">View Orders</a>
+                <a href="/" class="btn btn-secondary btn-lg">Home</a>
+            </div>
+    </div>
+    
+      
+      <!-- Include GSAP library -->
+<script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
+
+<script>
+    
+    gsap.from(".container1", { opacity: 0, duration: 1, delay: 0.5 });
+    gsap.from(".animation-container1", { y: 50, opacity: 0, duration: 1, delay: 1.5 });
+</script>

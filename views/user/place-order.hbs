@@ -1,0 +1,128 @@
+
+<body class=" text-light">
+    <header class="bg-secondary text-light text-center py-2">
+        <!-- Your website header content goes here -->
+    </header>
+
+    <main class="container mt-4">
+        <section id="order-summary">
+            <h2 class="text-secondary">Order Summary</h2>
+            <!-- Display a summary of the items in the user's cart -->
+            <!-- Include product names, quantities, and prices -->
+        </section>
+
+        <section id="customer-details">
+            <h2 class="text-secondary">Customer Details</h2>
+            <!-- Form for collecting customer information -->
+            <form action="/finish-order" method="post" id="checkout-form">
+                <div class="form-group">
+                    <label for="name" class="text-secondary">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+
+                 <div class="form-group">
+                    <label for="mobile" class="text-secondary">Phone number:</label>
+                    <input type="tel" class="form-control" id="mobile" name="mobile" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pin" class="text-secondary">pin:</label>
+                    <input type="number" class="form-control" id="pin" name="pin" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address" class="text-secondary">Address:</label>
+                    <textarea class="form-control" id="address" name="address" required></textarea>
+                </div>
+
+                <!-- Add more fields as needed (e.g., phone number, etc.) -->
+
+                <h2 class="text-secondary">Payment Method</h2>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="payment-method" value="online" checked>
+                    <label class="form-check-label text-secondary">Online Payment</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="payment-method" value="cod">
+                    <label class="form-check-label text-secondary">Cash on Delivery</label>
+                </div>
+
+                <!-- Add online payment gateway integration (e.g., credit card, PayPal) -->
+
+                <button  type="submit" class="btn btn-secondary mt-3 mb-3">Place Order</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-secondary text-light text-center py-2">
+        <!-- Your website footer content goes here -->
+    </footer>
+
+
+<script>
+    $("#checkout-form").submit((e) => {
+    e.preventDefault();
+    $.ajax({
+        url: '/finish-order',
+        method: 'post',
+        data: $('#checkout-form').serialize(),
+        success: (response) => {
+            if (response.mode == 'cod') {
+                location.href = '/order-placed';
+            } else {
+                razorpayPayment(response);
+            }
+        }
+    });
+});
+
+function razorpayPayment(order) {
+    var options = {
+        "key": 'rzp_test_9d0nC9UaxSoS2k',
+        "amount": order.amount,
+        "currency": "INR",
+        "name": "Acme Corp",
+        "description": "Test Transaction",
+        "image": "https://example.com/your_logo",
+        "order_id": order.id,
+        "handler": function (response) {
+
+            verifyPayment(response,order);
+        },
+        "prefill": {
+            "name": "Gaurav Kumar",
+            "email": "gaurav.kumar@example.com",
+            "contact": "9000090000"
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+}
+
+function verifyPayment(response,order) {
+    $.ajax({
+        url: '/verify-payment',
+        data: {
+            payment: response,
+            order: order
+        },
+        method: 'post',
+        success:(response)=>{
+            if(response.status){
+                location.href='/order-placed'
+            }else{
+                alert('PAYMENT FAILED')
+            }
+        }
+    });
+}
+
+</script>

@@ -1,0 +1,60 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary ">
+  <a class="navbar-brand ms-5" href="/">phonearena</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/"> Home<span class="sr-only"></span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/cart">cart<span style="background-color: red;" class="badge badge-danger" id="cart-count">{{cartCount}}</span></a>
+      </li>
+      
+            {{#if user}}
+      <li class="nav-item ">
+        <a class="nav-link" href="/orders">oders</a>
+      </li>
+      {{/if}}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/category/smartphones">Samrt Phones</a>
+          <a class="dropdown-item" href="/category/laptops">Laptops</a>
+          <a class="dropdown-item" href="/category/wearables">Wearables</a>
+           <a class="dropdown-item" href="/category/speakers">Speakers</a>
+          <a class="dropdown-item" href="/category/others">Others</a>
+        </div>
+      </li>
+    </ul>
+      
+      <div class="dropdown p-2 ms-auto">
+  <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  {{#if user}}
+     {{user.username}}
+  {{else}}
+    Account
+  {{/if}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+{{#if user}}
+  <a class="dropdown-item" href="/logout">Logout</a>
+  {{else}}
+<a class="dropdown-item" href="/login">Login</a>
+  {{/if}}
+
+
+  </div>
+
+
+
+</div>
+</div>
+  </div>
+</nav>
+  </header>

@@ -1,0 +1,22 @@
+
+
+    <section>
+         <button id="openPopup" class="btn btn-primary">Open Popup</button>
+    <div id="popupContainer" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Popup Example</h5>
+                    <button type="button" class="btn-close" id="closePopup" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Your dynamic content here, using Handlebars syntax -->
+                    <h2>{{popupMessage}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Link to Bootstrap JS (popper.js and bootstrap.js are required) -->
+    <script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    </section>

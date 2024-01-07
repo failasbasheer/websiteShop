@@ -1,0 +1,32 @@
+<section>
+    <div class="container">
+        <div class="row mt-4">
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- First Table with Dark Header -->
+                <table class="table mt-4">
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col">no</th>
+                            <th scope="col">Device name</th>
+                            <th scope="col">Processor</th>
+                            <th>price</th>
+                            <th scope="col">Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each products}}
+                        <tr>
+                            <td scope="row">1</td>
+                            <td>{{this.product.mobileName}}</td>
+                            <td>{{this.product.mobileDescription}}</td>
+                            <td>₹{{this.product.mobilePrice}}</td>
+                            <td><img src="/product-images/{{this.product._id}}.jpg" width="90px" height="100px"></td>
+                        </tr>
+                              {{/each}}
+                    </tbody>
+                  
+                </table>
+    </div>
+</section>

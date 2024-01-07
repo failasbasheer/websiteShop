@@ -1,0 +1,48 @@
+<section>
+    <header class="bg-dark text-white text-center py-4">
+        <h1>Product Details</h1>
+    </header>
+
+    <main class="container mt-4">
+        <div class="card mx-auto">
+            <div class="row no-gutters">
+                <!-- Left column for image -->
+                <div class="col-md-4">
+                    <img src='../product-images/{{product._id}}.jpg' class="card-img" alt="Product Image">
+                </div>
+
+                <!-- Right column for product details -->
+                <div class="col-md-8">
+                    <div class="card-body text-center">
+                        <h2 class="card-title">{{product.deviceName}}</h2>
+                        <p class="card-text price">₹{{product.devicePrice}}</p>
+                        <p class="card-text cate">{{product.deviceCategory}}</p>
+                        <p class="card-text description">{{product.deviceDescription}}</p>
+                        <button onclick="addToCart2('{{product._id}}')" class="btn btn-secondary">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-dark text-center py-2">
+        <p>&copy; PhoneArena</p>
+    </footer>
+</section>
+<script>
+    function addToCart2(proId) {
+    $.ajax({
+      url: "/add-to-cart/" + proId,
+      method: 'get',
+      success: function (response) {
+        if(response.status){
+          let count=$('#cart-count').html()
+          count=parseInt(count)+1
+          $('#cart-count').html(count)
+          alert('Item added to cart')
+        }
+       
+      }
+    });
+  }
+</script>

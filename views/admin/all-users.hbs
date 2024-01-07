@@ -1,0 +1,26 @@
+<div class="bg-secondary text-light">
+    <div class="container">
+        <h1 class="text-dark">All Users</h1>
+        <table class="table table-white  text-white">
+            <thead>
+                <tr>
+                    <th>no</th>
+                    <th>User ID</Canvas></th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each user}}
+                    <tr>
+                        <td>1</td>
+                        <td>{{this._id}}</td>
+                        <td>{{this.username}}</td>
+                        <td>{{this.email}}</td>
+                        <td><a href="/admin/remove-user/{{this._id}}" onclick="return confirm('Are you sure you want remove this user?')" class="btn btn-danger">remove user</a></td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+
+    <section class="container mt-5">
+   
+        <form action="/admin/edit-product/{{_id}}" method="post" enctype="multipart/form-data">
+            <!-- Mobile Name -->
+            <div class="form-group">
+                <label for="mobileName">Mobile Name:</label>
+                <input type="text" class="form-control" id="mobileName" name="mobileName" value="{{mobileName}}" >
+            </div>
+
+            <!-- Mobile Description -->
+            <div class="form-group">
+                <label for="mobileDescription">Mobile Description:</label>
+                <input class="form-control" id="mobileDescription" name="mobileDescription" value="{{mobileDescription}}">
+            </div>
+
+                   <div class="form-group">
+      <label  for="deviceCategory">Device Category:{{deviceCategory}}</label>
+        <select id="deviceCategory" name="deviceCategory" required>
+        <option  value="" selected>--select the category--</option>
+        <option value="smartphone">Smartphone</option>  
+        <option value="laptop">Laptop</option>
+        <option value="wearable">Wearable</option>
+        <option value="speaker">Speaker</option>
+        <option value="other">Others</option>
+         </select>
+           </div> 
+
+            <!-- Mobile Price -->
+            <div class="form-group">
+                <label for="mobilePrice">Mobile Price:</label>
+                <input type="number" class="form-control" id="mobilePrice" name="mobilePrice" step="0.01" value="{{mobilePrice}}" >
+            </div>
+
+<br>
+            <!-- Image Upload -->
+            <div class="form-group">
+                <div>
+                    <h4>current image</h4>
+                <img src="/product-images/{{this._id}}.jpg" style="height: 10rem; width:12rem;" alt="" id="imgView">
+                </div>
+                 <label for="imageUpload">Upload Image:</label>
+                <input type="file" class="form-control-file" id="imageUpload" name="image" accept="image/*" onchange="viewImage(event)" >
+            </div>
+         
+         <br>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-secondary">Add Mobile</button>
+        </form>
+ 
+ <script>
+    function viewImage(event){
+        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+    }, 
+ </script>

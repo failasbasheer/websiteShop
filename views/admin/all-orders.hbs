@@ -1,0 +1,33 @@
+<div class="bg-secondary text-light">
+    <div class="container">
+        <h1 class="text-dark">Placed Orders</h1>
+        <table class="table table-white  text-white">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</Canvas></th>
+                    <th>Mobile Number</th>
+                    <th>Address</th>
+                    <th>Pin Code</th>
+                    <th>Mode of Payment</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orders}}
+                    <tr>
+                        <td>1</td>
+                        <td>{{this.deliveryDetails.name}}</td>
+                        <td>{{this.deliveryDetails.mobile}}</td>
+                        <td>{{this.deliveryDetails.address}}</td>
+                        <td>{{this.deliveryDetails.pin}}</td>
+                        <td>{{this.payment}}</td>
+                        <td>₹{{this.totalAmount.[0].total}}</td>
+                        <td><a href="/delete-order-product/{{this._id}}" onclick="return confirm('Are you sure you want to delete this order?')" class="btn btn-danger">cancel order</a></td>
+
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
